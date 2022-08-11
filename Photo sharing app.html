@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <style>
+        body
+		{
+            margin: 0;
+            padding: 0;
+        }
+        #disp-img
+		{
+			width: 500px;
+			height: 300px;
+			border: 5px solid black;
+			background-position: center;
+			background-size: cover;
+        }
+        #up
+		{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-flow: column wrap;
+        }
+        
+    </style>
+</head>
+<body>
+    <center>
+		<h2 style="color:brown">Jhaji Production</h2>
+		<strong>Photo Sharing app</strong>   
+    </center><br/>
+    <div id="up">
+        <input type="file" id="img" 
+		       accept="image/jpeg, image/png, image/jpg">
+        <pre>
+
+        </pre>
+        <div id="disp-img"></div>
+    </div>
+    <script>
+//We will select that input using query selector by which we are going to upload a image
+        const img_in = document.querySelector("#img");
+//After that we will add an event listener that will invoke a function when any change happens on that input like when user clicks that to upload any image
+img_in.addEventListener("change", function() {
+  const reader = new FileReader();
+  
+  //We will add an event listener for invoking a function when image will be uploaded
+  reader.addEventListener("load", () => {
+    let upload_img = reader.result;
+    document.querySelector("#disp-img").style.backgroundImage = `url(${upload_img})`;
+  });
+ 
+  reader.readAsDataURL(this.files[0]);
+  //Added these above lines to display that image
+});
+   </script>
+</body>
+</html>
